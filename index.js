@@ -20,7 +20,7 @@ class SinglyLinkedList{
     // Increment the length by one
     // Return the linked list
     push(val){
-        var newNode = new Node(val);
+        let newNode = new Node(val);
         if(!this.head){
             this.head = newNode;
             this.tail = this.head;
@@ -41,8 +41,8 @@ class SinglyLinkedList{
     // Return the value of the node removed
     pop(){
         if(!this.head) return undefined;
-        var current = this.head;
-        var newTail = current;
+        let current = this.head;
+        let newTail = current;
         while(current.next){
             newTail = current;
             current = current.next;
@@ -59,13 +59,13 @@ class SinglyLinkedList{
 
     // Shift pseudocode
     // If there are no nodes, return undefined
-    // Store the current head property in a variable
+    // Store the current head property in a letiable
     // Set the head property to be the current head's next property
     // Decrement the length by 1
     // Return the value of the node removed
     shift(){
         if(!this.head) return undefined;
-        var currentHead = this.head;
+        let currentHead = this.head;
         this.head = currentHead.next;
         this.length--;
         if(this.length === 0){
@@ -83,7 +83,7 @@ class SinglyLinkedList{
     // Increment the length of the list by 1
     // Return the linked list
     unshift(val){
-        var newNode = new Node(val);
+        let newNode = new Node(val);
         if(!this.head) {
             this.head = newNode;
             this.tail = this.head;
@@ -100,8 +100,8 @@ class SinglyLinkedList{
     // Loop through the list until you reach the index and return the node at that specific index
     get(index){
         if(index < 0 || index >= this.length) return null;
-        var counter = 0;
-        var current = this.head;
+        let counter = 0;
+        let current = this.head;
         while(counter !== index){
             current = current.next;
             counter++;
@@ -115,7 +115,7 @@ class SinglyLinkedList{
     // If the node is not found, return false
     // If the node is found, set the value of that node to be the value passed to the function and return true
     set(index, val){
-        var foundNode = this.get(index);
+        let foundNode = this.get(index);
         if(foundNode){
             foundNode.val = val;
             return true;
@@ -137,9 +137,9 @@ class SinglyLinkedList{
         if(index === this.length) return !!this.push(val);
         if(index === 0) return !!this.unshift(val);
         
-        var newNode = new Node(val);
-        var prev = this.get(index - 1);
-        var temp = prev.next;
+        let newNode = new Node(val);
+        let prev = this.get(index - 1);
+        let temp = prev.next;
         prev.next = newNode;
         newNode.next = temp;
         this.length++;
@@ -158,8 +158,8 @@ class SinglyLinkedList{
         if(index < 0 || index >= this.length) return undefined;
         if(index === 0) return this.shift();
         if(index === this.length - 1) return this.pop();
-        var previousNode = this.get(index - 1);
-        var removed = previousNode.next;
+        let previousNode = this.get(index - 1);
+        let removed = previousNode.next;
         previousNode.next = removed.next;
         this.length--;
         return removed;
@@ -167,22 +167,23 @@ class SinglyLinkedList{
 
     // Reverse pseudocode
     // Swap the head and tail
-    // Create a variable called next
-    // Create a variable called prev
-    // Create a variable called node and initialize it to the head property
+    // Create a letiable called next
+    // Create a letiable called prev
+    // Create a letiable called node and initialize it to the head property
     // Loop through the list
     // Set next to be the next property on whatever node is
     // Set the next property on the node to be whatever prev is
-    // Set prev to be the value of the node variable
-    // Set the node variable to be the value of the next variable
+    // Set prev to be the value of the node letiable
+    // Set the node letiable to be the value of the next letiable
     // Once you have finished looping, return the list
     reverse(){
-      var node = this.head;
+      let node = this.head;
       this.head = this.tail;
       this.tail = node;
-      var next;
-      var prev = null;
-      for(var i = 0; i < this.length; i++){
+      let next;
+      let prev = null;
+      //for(let i = 0; i < this.length; i++){
+      while(node){
         next = node.next;
         node.next = prev;
         prev = node;
@@ -193,8 +194,8 @@ class SinglyLinkedList{
 
     // Print
     print(){
-        var arr = [];
-        var current = this.head
+        let arr = [];
+        let current = this.head
         while(current){
             arr.push(current.val)
             current = current.next
@@ -203,10 +204,17 @@ class SinglyLinkedList{
     }
 }
 
-var list = new SinglyLinkedList()
+let list = new SinglyLinkedList()
 
 list.push(100)
 list.push(201)
 list.push(250)
 list.push(350)
 list.push(999)
+
+// Big O of Singly Linked Lists
+
+// Insertion -   O(1)
+// Removal -   It depends O(1) or O(N)
+// Searching -   O(N)
+// Access -   O(N)
